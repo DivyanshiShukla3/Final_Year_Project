@@ -104,7 +104,7 @@ public class Loginpage extends JFrame {
             String user = usernameField.getText();
             String pass = new String(passwordField.getPassword());
 
-            if (user.equals("admin") && pass.equals("1234")) {
+            if (user.equals("admin") && pass.equals("12345")) {
                 JOptionPane.showMessageDialog(this, "Login Successful!");
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid Credentials", "Error", JOptionPane.ERROR_MESSAGE);
