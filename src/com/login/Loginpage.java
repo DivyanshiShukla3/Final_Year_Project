@@ -101,15 +101,16 @@ public class Loginpage extends JFrame {
 
         // Event Handlers
         loginButton.addActionListener(e -> {
-            String user = usernameField.getText();
-            String pass = new String(passwordField.getPassword());
+            String emailOrUsername = usernameField.getText(); // Assuming user enters email
+            String password = new String(passwordField.getPassword());
 
-            if (user.equals("admin") && pass.equals("12345")) {
+            if (UserUtils.authenticateUser(emailOrUsername, password)) {
                 JOptionPane.showMessageDialog(this, "Login Successful!");
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid Credentials", "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
+
 
         createButton.addActionListener(e -> {
             new RegistrationPage().setVisible(true);

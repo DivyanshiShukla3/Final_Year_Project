@@ -109,12 +109,22 @@ public class RegistrationPage extends JFrame {
 
             if (email.isEmpty() || username.isEmpty() || password.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Error", JOptionPane.ERROR_MESSAGE);
+            } else if (!UserUtils.isValidEmail(email)) {
+                JOptionPane.showMessageDialog(this, "Invalid email format!", "Error", JOptionPane.ERROR_MESSAGE);
             } else if (!password.equals(confirmPassword)) {
                 JOptionPane.showMessageDialog(this, "Passwords do not match!", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "Registered successfully!");
+                boolean registered = UserUtils.registerUser(email, username, password);
+                if (registered) {
+                    JOptionPane.showMessageDialog(this, "Registered successfully!");
+                    new Loginpage().setVisible(true);
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Email already exists.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
+
 
         backToLogin.addActionListener(e -> {
             new Loginpage().setVisible(true);
